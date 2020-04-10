@@ -69,3 +69,12 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+.kitchen{fill:green}
+.livingroom{fill:red}
+.bedroom{fill:blue}
+.bath{fill:grey}
+.balcony{fill: beige}
+.entrance{fill:azure}
+.home{fill:none}
+.st1{fill:none;stroke:#000000;stroke-miterlimit:10;}
