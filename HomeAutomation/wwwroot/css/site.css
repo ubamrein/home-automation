@@ -96,27 +96,32 @@ rect:hover:not(.outside) {
   background-color: transparent;
   border: black solid 1px;
   height: 250px;
-  width: 200px;
+  width: 300px;
   box-shadow: -.125em 0 .25em #928886, inset -1px 0 1px #fff;
+}
+.player>* {
+  margin: 10px auto !important;
 }
 
 .display {
   background-color: transparent;
   border: black solid 1 px;
-  margin: 0 auto;
   height: 100px;
   width: 200px;
   box-shadow: -.125em 0 .25em #928886, inset -1px 0 1px #fff;
 }
 
 .dropdown {
-  margin: 0 auto;
+  width: 133px;
+}
+
+.media-controls {
+  width: 120px;
 }
 
 .media-controls>button {
   background-color: transparent;
   border: none;
-  margin: 0 auto;
 }
 
 .back {
@@ -152,6 +157,10 @@ rect:hover:not(.outside) {
   background-size: cover;
   height: 20px;
   width: 20px;
+}
+
+.volume {
+  width: 192px;
 }
 
 input[type='range'] {

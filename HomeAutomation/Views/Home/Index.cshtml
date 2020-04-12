@@ -1,7 +1,10 @@
-﻿@{
+﻿@model HomeModel
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
+@* 
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 195.6 89" style="enable-background:new 0 0 195.6 89;" xml:space="preserve">
     <style type="text/css">
@@ -48,8 +51,10 @@
     <line class="st1" x1="102.9" y1="2.8" x2="100.1" y2="2.8"/>
     <line class="st1" x1="79.3" y1="0" x2="79.3" y2="5.7"/>
     <line class="st1" x1="99.7" y1="0" x2="99.7" y2="5.7"/>
-</svg>
+</svg> *@
 
+@foreach (var player in @Model.Controllers)
+{
 <div class="player">
     <div class="display"><h1><center>display player info</center></h1></div>
     <div class="dropdown">
@@ -57,9 +62,10 @@
             Select Media
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
+            @foreach (var service in player.Services)
+            {
+              <a class="dropdown-item" href="#">@service.DisplayName</a>  
+            }
   </div>
 </div>
     <div class="media-controls">
@@ -73,8 +79,11 @@
         <input type='range' min='0' max='100' value='20' />
     </div>
 </div>
+}
 
+
+@* 
 <div class="light">
     <div class='color'></div>
     <div class='brightness'></div>
-</div>
+</div> *@
