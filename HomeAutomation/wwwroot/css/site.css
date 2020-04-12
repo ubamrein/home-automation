@@ -95,7 +95,6 @@ rect:hover:not(.outside) {
 .player {
   background-color: transparent;
   border: black solid 1px;
-  height: 250px;
   width: 300px;
   box-shadow: -.125em 0 .25em #928886, inset -1px 0 1px #fff;
 }

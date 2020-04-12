@@ -66,8 +66,23 @@
             {
               <a class="dropdown-item" href="#">@service.DisplayName</a>  
             }
-  </div>
-</div>
+        </div>
+    </div>
+    @foreach (var radio in player.Services.OfType<RadioService>())
+    {
+        <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Select Station
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            @foreach (var station in radio.RadioStations)
+            {
+              <a class="dropdown-item" href="#">@station</a>  
+            }
+        </div>
+    </div>
+    }
+    
     <div class="media-controls">
         <button class="back"></button>
         <button class="pause"></button>
