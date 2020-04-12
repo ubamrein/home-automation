@@ -55,7 +55,7 @@
 
 @foreach (var player in @Model.Controllers)
 {
-<div class="player">
+<div data-player="@player.Name" class="player">
     <div class="display"><h1><center>display player info</center></h1></div>
     <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -64,20 +64,20 @@
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             @foreach (var service in player.Services)
             {
-              <a class="dropdown-item" href="#">@service.DisplayName</a>  
+              <a class="dropdown-item" href="#" data-player="@player.Name" data-service-action="@service.Name" onclick="serviceSelected(this)">@service.DisplayName</a>  
             }
         </div>
     </div>
     @foreach (var radio in player.Services.OfType<RadioService>())
     {
-        <div class="dropdown">
+        <div data-player="@player.Name" data-service="@radio.Name" class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Select Station
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             @foreach (var station in radio.RadioStations)
             {
-              <a class="dropdown-item" href="#">@station</a>  
+              <a class="dropdown-item" href="#" data-url="@station.URL">@station.Name</a>  
             }
         </div>
     </div>

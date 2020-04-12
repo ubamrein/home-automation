@@ -8,7 +8,7 @@ namespace HomeAutomation.Models
 {
     public class RadioService : Service
     {
-        public List<string> RadioStations {get;set;} = new List<string>();
+        public List<RadioStation> RadioStations {get;set;} = new List<RadioStation>();
         
         public async Task LoadStations() {
             var client = new HttpClient();
@@ -19,16 +19,19 @@ namespace HomeAutomation.Models
 
        
 
-        private async Task<List<string>> LoadNextStations(string url = null) {
+        private async Task<List<RadioStation>> LoadNextStations(string url = null) {
             try {
-                List<string> tmpStations = new List<string>();
+                List<RadioStation> tmpStations = new List<RadioStation>();
                 var client = new HttpClient();
                 string action = url == null ? $"{this.BaseUrl}/RadioBrowse?service={this.Name}" : $"{this.BaseUrl}/RadioBrowse?service={this.Name}&url={url}";
                 var response = await client.GetAsync(action);
                 XDocument root = XDocument.Parse(await response.Content.ReadAsStringAsync());
                 foreach(var ele in root.Descendants()) {
                     if(ele.Name == "item" && ele.Attribute("type")?.Value == "audio") {
-                        tmpStations.Add(ele.Attribute("URL").Value);
+                        var radiostation = new RadioStation();
+                        radiostation.URL = ele.Attribute("URL").Value;
+                        radiostation.Name = ele.Attribute("text").Value;
+                        tmpStations.Add(radiostation);
                     }
                     else if(ele.Name == "item" && ele.Attribute("type")?.Value == "link") {
                         tmpStations.AddRange(await LoadNextStations(ele.Attribute("URL").Value));
@@ -40,7 +43,7 @@ namespace HomeAutomation.Models
                 return tmpStations;
             }
             catch(Exception ex) {
-                return new List<string>();
+                return new List<RadioStation>();
             }
         }
     }
