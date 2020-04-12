@@ -8,6 +8,8 @@ namespace HomeAutomation.Models
         public string Type {get;set;}
         public string Icon {get;set;}
 
+        public string BaseUrl {get;set;}
+
         public string getPlayUrl(string url) {
             return $"/Play?service={Name}&url={url}";
         }

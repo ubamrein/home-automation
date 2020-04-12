@@ -24,11 +24,13 @@ namespace HomeAutomation.Models
                 XDocument doc = XDocument.Parse(await response.Content.ReadAsStringAsync());
                 foreach(XElement element in doc.Descendants()) {
                    if(element.Name == "service" && element.Attribute("type").Value == "RadioService") {
-                        Service service = new Service() {
+                        RadioService service = new RadioService() {
                             DisplayName = element.Attribute("displayname").Value,
                             Name = element.Attribute("name").Value,
-                            Type = element.Attribute("type").Value
+                            Type = element.Attribute("type").Value,
+                            BaseUrl = BaseUrl
                         };
+                        await service.LoadStations();
                         Services.Add(service);
                    }
                 }
