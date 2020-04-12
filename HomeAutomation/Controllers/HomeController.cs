@@ -11,6 +11,49 @@ namespace HomeAutomation.Controllers
 {
     public class HomeController : Controller
     {
+        public HomeModel MyHome {get;set;} = new HomeModel(){ 
+            Controllers = new List<ControllerModel>(){
+            new ControllerModel(){
+                Name = "Living Room",
+                BaseUrl = "http://192.168.179.42:11000",
+                Actions = new Dictionary<string, string>() {
+                    {"GetServices", "/Services"},
+                    {"Play","/Play"},
+                    {"Pause", "/Pause"},
+                    {"Skip", "/Skip"},
+                    {"Back", "/Back"},
+                    {"Volume", "/Volume?level=:volume"}
+                },
+                QuickActions = new List<string>() {
+                    "Play",
+                    "Pause",
+                    "Skip",
+                    "Back",
+                    "Volume"
+                }
+            },
+            new ControllerModel(){
+                Name = "Kitchen",
+                BaseUrl = "http://192.168.179.66:11000",
+                Actions = new Dictionary<string, string>() {
+                    {"GetServices", "/Services"},
+                    {"Play","/Play"},
+                    {"Pause", "/Pause"},
+                    {"Skip", "/Skip"},
+                    {"Back", "/Back"},
+                    {"Volume", "/Volume?level=:volume"}
+                },
+                QuickActions = new List<string>() {
+                    "Play",
+                    "Pause",
+                    "Skip",
+                    "Back",
+                    "Volume"
+                }
+            },
+
+        }
+        };
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -18,9 +61,12 @@ namespace HomeAutomation.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            foreach(var controller in MyHome.Controllers) {
+                await controller.LoadServices();
+            }
+            return View(MyHome);
         }
 
         public IActionResult Privacy()
