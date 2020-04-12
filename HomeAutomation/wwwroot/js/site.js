@@ -9,5 +9,24 @@ function serviceSelected(element) {
 }
 
 $('body').ready(function() {
-  $('.dropdown[data-service]').hide();
+  $('.dropdown[data-service]').hide();  
+  var players = $(".player");
+  for (var player of players) {
+      console.log(player)
+    setInterval(getStatus, 1000, $(player),$(player).data("base-url"), $(player).data("action"));
+  }
 });
+
+function getStatus(player, baseUrl, action) {
+    fetch("/api/status?baseurl="+encodeURIComponent(baseUrl)+"&action="+encodeURIComponent(action)).then(function(resp) {
+        resp.json().then(function(data){
+            var name = player.data("player");
+            var info = $('.display[data-player="'+ name+'"]').eq(0);
+            var url = data.image;
+            if (!url.startsWith("http")) {
+                url = baseUrl + url;
+            }
+            info.html("<img width=\"200\" src=\"" + url + "\"/><p>"+ data.title + "</p>")
+        });
+    })
+}

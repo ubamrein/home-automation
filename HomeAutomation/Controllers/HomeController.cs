@@ -30,14 +30,15 @@ namespace HomeAutomation.Controllers
                     "Skip",
                     "Back",
                     "Volume"
-                }
+                },
+                ReadOut = "/Status"
             },
             new ControllerModel(){
                 Name = "Kitchen",
                 BaseUrl = "http://192.168.179.66:11000",
                 Actions = new Dictionary<string, string>() {
                     {"GetServices", "/Services"},
-                    {"Play","/Play"},
+                    {"Play","/Play?service=::service::&url=::url::"},
                     {"Pause", "/Pause"},
                     {"Skip", "/Skip"},
                     {"Back", "/Back"},
@@ -49,7 +50,8 @@ namespace HomeAutomation.Controllers
                     "Skip",
                     "Back",
                     "Volume"
-                }
+                },
+                ReadOut = "/Status"
             },
 
         }

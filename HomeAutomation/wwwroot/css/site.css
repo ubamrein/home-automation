@@ -93,10 +93,14 @@ rect:hover:not(.outside) {
 }
 
 .player {
+  margin: 20px;
   background-color: transparent;
   border: black solid 1px;
   width: 300px;
   box-shadow: -.125em 0 .25em #928886, inset -1px 0 1px #fff;
+}
+.player > h2 {
+  width: 200px;
 }
 .player>* {
   margin: 10px auto !important;
@@ -105,7 +109,6 @@ rect:hover:not(.outside) {
 .display {
   background-color: transparent;
   border: black solid 1 px;
-  height: 100px;
   width: 200px;
   box-shadow: -.125em 0 .25em #928886, inset -1px 0 1px #fff;
 }

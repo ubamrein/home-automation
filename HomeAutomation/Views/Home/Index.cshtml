@@ -55,8 +55,9 @@
 
 @foreach (var player in @Model.Controllers)
 {
-<div data-player="@player.Name" class="player">
-    <div class="display"><h1><center>display player info</center></h1></div>
+<div data-player="@player.Name" data-base-url="@player.BaseUrl" data-action="/Status" class="player">
+    <h2>@player.Name</h2>
+    <div data-player="@player.Name" class="display"><h1><center>display player info</center></h1></div>
     <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Select Media
@@ -91,7 +92,7 @@
         <button class="next"></button>
     </div>
     <div class="volume">
-        <input type='range' min='0' max='100' value='20' />
+        <input type='range' min='0' max='100' value='20' oninput="" />
     </div>
 </div>
 }
