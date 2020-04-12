@@ -9,13 +9,12 @@
     </style>
 
     <rect class="livingroom" x="60.2" y="46.1" width="103.9" height="42.8"/>
-    <rect class="kitchen" x="0.5" y="45.9"  width="59.7" height="42.8"/>
+    <rect class="kitchen" x="0.5" y="45.9"  width="59.8" height="42.8"/>
     <rect class="bedroom" x="140.2" y="2.8"  width="54.9" height="42.8"/>
     <rect class="bath" x="102.9" y="2.8"  width="38" height="42.8"/>
-    <rect x="0.5" y="3.3" width="57.8" height="42.8"/>
+    <rect class="outside" x="0.5" y="3.3" width="57.8" height="42.8"/>
     <rect class="balcony" x="164.1" y="45.7"  width="31" height="42.8"/>
     <rect class="entrance" x="58.3" y="2.8"  width="44.6" height="42.8"/>
-
 
 
     <line class="st1" x1="0.5" y1="45.7" x2="0.5" y2="88.5"/>
@@ -51,4 +50,31 @@
     <line class="st1" x1="99.7" y1="0" x2="99.7" y2="5.7"/>
 </svg>
 
+<div class="player">
+    <div class="display"><h1><center>display player info</center></h1></div>
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Select Media
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+  </div>
+</div>
+    <div class="media-controls">
+        <button class="back"></button>
+        <button class="pause"></button>
+        <button class="play"></button>
+        <button class="stop"></button>
+        <button class="next"></button>
+    </div>
+    <div class="volume">
+        <input type='range' min='0' max='100' value='20' />
+    </div>
+</div>
 
+<div class="light">
+    <div class='color'></div>
+    <div class='brightness'></div>
+</div>
