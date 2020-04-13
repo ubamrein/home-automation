@@ -42,7 +42,7 @@ namespace HomeAutomation.Controllers
                     {"Pause", "/Pause"},
                     {"Skip", "/Skip"},
                     {"Back", "/Back"},
-                    {"Volume", "/Volume?level=::volume::"}
+                    {"Volume", "/Volume?level=::volume::&tell_slaves=::no::"}
                 },
                 QuickActions = new List<string>() {
                     "Play",

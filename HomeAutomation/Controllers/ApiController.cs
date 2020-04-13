@@ -3,17 +3,34 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Linq;
 using HomeAutomation.Models;
+using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace HomeAutomation.Controllers
 {
     public class ApiController
     {
         private HttpClient client {get;set;}
+        private Regex argpattern {get;set;}
         public ApiController() {
             client = new HttpClient();
+            argpattern = new Regex("(?<key>[A-z]+)=::[A-z]+::");
         }
-        public void Action(string baseurl, string action, string[] arguments) {
-
+        public async Task<string[]> Action(string baseurl, string controlleraction, string[] arguments) {
+            Debug.WriteLine(controlleraction);
+            var parsedURL = controlleraction.Split("?").First()+"?";
+            int i=0;
+            foreach(Match argument in argpattern.Matches(controlleraction)){
+                var queryKey=argument.Groups["key"].Value;
+                parsedURL+=queryKey+"="+arguments[i]+"&";
+                i++;
+            }
+            parsedURL=parsedURL.Substring(1,parsedURL.Length-1);
+            var resp = await client.GetAsync($"{baseurl}/{parsedURL}");
+            if(!resp.IsSuccessStatusCode) {
+                Debug.WriteLine("Request failed");
+            }
+            return arguments;
         }
 
         public async Task<Status> Status(string baseurl, string action) {

@@ -30,3 +30,19 @@ function getStatus(player, baseUrl, action) {
         });
     })
 }
+
+function setVolume(element) {
+    var ele = $(element).eq(0);
+    fetch(
+        '/api/action?baseurl=' + encodeURIComponent(ele.data('base-url')) +
+        '&controlleraction=' + encodeURIComponent(ele.data('action')) +
+        '&arguments=' + encodeURIComponent(ele.val())+
+        '&arguments=0')
+        .then(function(resp) {
+          if (resp.ok) {
+            console.log("Volume set to: "+ele.val());
+          } else {
+            throw new Error("Could not set volume:"+resp);
+          }
+        });
+}

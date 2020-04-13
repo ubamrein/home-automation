@@ -92,7 +92,7 @@
         <button class="next"></button>
     </div>
     <div class="volume">
-        <input type='range' min='0' max='100' value='20' oninput="" />
+        <input type='range' min='0' max='100' value='20' data-base-url="@player.BaseUrl" data-action='@player.Actions["Volume"]' oninput="setVolume(this)" />
     </div>
 </div>
 }

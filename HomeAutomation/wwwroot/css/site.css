@@ -98,6 +98,7 @@ rect:hover:not(.outside) {
   border: black solid 1px;
   width: 300px;
   box-shadow: -.125em 0 .25em #928886, inset -1px 0 1px #fff;
+  display: inline-block;
 }
 .player > h2 {
   width: 200px;
