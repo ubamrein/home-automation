@@ -91,6 +91,11 @@
         @* <button class="stop" onclick="buttonPress(this)" data-player="@player.Name" data-base-url="@player.BaseUrl" data-action='@player.Actions["Stop"]'></button> *@
         <button class="next" onclick="buttonPress(this)" data-player="@player.Name" data-base-url="@player.BaseUrl" data-action='@player.Actions["Skip"]'></button>
     </div>
+    <div>
+        <progress data-player="@player.Name" />
+    </div>
+    
+
     <div class="volume">
         <input type='range' min='0' max='100' value='20' onmousedown="mousedown(this)" onmouseup="mouseup(this)" onmouseout="mouseup(this)" data-player="@player.Name" data-base-url="@player.BaseUrl" data-action='@player.Actions["Volume"]' oninput="setVolume(this)" />
     </div>

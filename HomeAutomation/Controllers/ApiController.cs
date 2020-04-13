@@ -50,7 +50,8 @@ namespace HomeAutomation.Controllers
                     Title = status.Element("title1")?.Value + "\n" + status.Element("title2")?.Value + "\n" + status.Element("title3")?.Value,
                     Volume = syncStatus.Attribute("volume") == null? 0 : int.Parse(syncStatus.Attribute("volume").Value),
                     Image = status.Element("image")?.Value,
-                    State = status.Element("state")?.Value
+                    State = status.Element("state")?.Value,
+                    TotalLength = status.Element("totlen") == null? 0: int.Parse(status.Element("totlen").Value)
                 };
             } else {
                 return new Status();

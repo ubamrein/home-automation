@@ -8,8 +8,10 @@ namespace HomeAutomation.Models
         public int Volume {get;set;}
         public double Db {get;set;}
         public int Position {get;set;}
+        public int TotalLength {get;set;}
 
         public string Image {get;set;}
         public string State {get;set;}
+
     }
 }

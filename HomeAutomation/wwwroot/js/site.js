@@ -29,7 +29,7 @@ function getStatus(player, baseUrl, action) {
                 url = baseUrl + url;
             }
             info.html("<img width=\"200\" src=\"" + url + "\"/><p>"+ data.title.replace("\n", "<br />") + "</p>")
-            if(data.state == "pause") {
+            if(data.state == "pause" || data.state == "stop") {
                 $('.play[data-player="'+ name + '"]').eq(0).show();
                 $('.pause[data-player="'+ name + '"]').eq(0).hide();
             } else {
@@ -39,6 +39,8 @@ function getStatus(player, baseUrl, action) {
             if(!inputPressed) {
                 $('input[data-player="'+ name+'"').eq(0).val(data.volume)
             }
+            $('progress[data-player="'+ name+'"').eq(0).attr("max", data.totalLength);
+            $('progress[data-player="'+ name+'"').eq(0).attr("value", data.position);
         });
     })
 }
