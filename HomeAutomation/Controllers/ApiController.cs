@@ -38,15 +38,23 @@ namespace HomeAutomation.Controllers
             XDocument doc = XDocument.Parse(await resp.Content.ReadAsStringAsync());
             var status = doc.Element("status");
 
-            return new Status() {
-                Artist = status.Element("artist")?.Value,
-                Album = status.Element("album")?.Value,
-                Db = status.Element("db") == null? 0 : double.Parse(status.Element("db").Value),
-                Position = status.Element("secs") == null? 0 : int.Parse(status.Element("secs").Value),
-                Title = status.Element("title1")?.Value + "\n" + status.Element("title2")?.Value + "\n" + status.Element("title3")?.Value,
-                Volume = status.Element("volume") == null? 0 : int.Parse(status.Element("volume").Value),
-                Image = status.Element("image")?.Value
-            };
+            var resp2 = await client.GetAsync($"{baseurl}/SyncStatus");
+            XDocument doc2 = XDocument.Parse(await resp2.Content.ReadAsStringAsync());
+            var syncStatus = doc2.Element("SyncStatus");
+            if(syncStatus != null && status != null) {
+                return new Status() {
+                    Artist = status.Element("artist")?.Value,
+                    Album = status.Element("album")?.Value,
+                    Db = status.Element("db") == null? 0 : double.Parse(status.Element("db").Value),
+                    Position = status.Element("secs") == null? 0 : int.Parse(status.Element("secs").Value),
+                    Title = status.Element("title1")?.Value + "\n" + status.Element("title2")?.Value + "\n" + status.Element("title3")?.Value,
+                    Volume = syncStatus.Attribute("volume") == null? 0 : int.Parse(syncStatus.Attribute("volume").Value),
+                    Image = status.Element("image")?.Value,
+                    State = status.Element("state")?.Value
+                };
+            } else {
+                return new Status();
+            }
         }
     }
 }

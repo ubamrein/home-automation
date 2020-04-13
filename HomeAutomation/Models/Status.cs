@@ -10,5 +10,6 @@ namespace HomeAutomation.Models
         public int Position {get;set;}
 
         public string Image {get;set;}
+        public string State {get;set;}
     }
 }

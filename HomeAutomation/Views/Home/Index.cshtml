@@ -85,14 +85,14 @@
     }
     
     <div class="media-controls">
-        <button class="back"></button>
-        <button class="pause"></button>
-        <button class="play"></button>
-        <button class="stop"></button>
-        <button class="next"></button>
+        <button class="back" onclick="buttonPress(this)" data-player="@player.Name" data-base-url="@player.BaseUrl" data-action='@player.Actions["Back"]'></button>
+        <button class="pause" onclick="buttonPress(this)" data-player="@player.Name" data-base-url="@player.BaseUrl" data-action='@player.Actions["Pause"]'></button>
+        <button class="play" onclick="buttonPress(this)" data-player="@player.Name" data-base-url="@player.BaseUrl" data-action='@player.Actions["Play"]'></button>
+        @* <button class="stop" onclick="buttonPress(this)" data-player="@player.Name" data-base-url="@player.BaseUrl" data-action='@player.Actions["Stop"]'></button> *@
+        <button class="next" onclick="buttonPress(this)" data-player="@player.Name" data-base-url="@player.BaseUrl" data-action='@player.Actions["Skip"]'></button>
     </div>
     <div class="volume">
-        <input type='range' min='0' max='100' value='20' data-base-url="@player.BaseUrl" data-action='@player.Actions["Volume"]' oninput="setVolume(this)" />
+        <input type='range' min='0' max='100' value='20' onmousedown="mousedown(this)" onmouseup="mouseup(this)" onmouseout="mouseup(this)" data-player="@player.Name" data-base-url="@player.BaseUrl" data-action='@player.Actions["Volume"]' oninput="setVolume(this)" />
     </div>
 </div>
 }
