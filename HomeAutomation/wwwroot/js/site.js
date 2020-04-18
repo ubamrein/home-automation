@@ -4,10 +4,43 @@
 // Write your JavaScript code.
 var inputPressed = false;
 
+function callApi(baseurl, controlleraction, arguments = []) {
+  var argumentstring = '';
+  for (var i = 0; i < arguments.length; i++) {
+    argumentstring += '&arguments=' + encodeURIComponent(arguments[i]);
+  }
+  fetch(
+      '/api/action?baseurl=' + encodeURIComponent(baseurl) +
+      '&controlleraction=' + encodeURIComponent(controlleraction) +
+      argumentstring)
+      .then(function(resp) {
+        if (resp.ok) {
+          console.log('Volume set to: ' + ele.val());
+        } else {
+          throw new Error('Could not set volume:' + resp);
+        }
+      });
+}
+
 function serviceSelected(element) {
   var ele = $(element);
   $('.dropdown[data-service][data-player="' + ele.data('player') + '"]').hide();
   $('.dropdown[data-service="' + ele.data("service-action") + '"][data-player="' + ele.data("player") + '"]').show();
+}
+
+function radioSelected(element) {
+  var ele = $(element).eq(0);
+  callApi(ele.data('base-url'), ele.data('action'), [ele.data("service-action"),ele.data("url")]);
+}
+
+function buttonPress(element) {
+  var ele = $(element).eq(0);
+  callApi(ele.data('base-url'), ele.data('action'));
+}
+
+function setVolume(element) {
+  var ele = $(element).eq(0);
+  callApi(ele.data('base-url'), ele.data('action'), [ele.val(), 0])
 }
 
 $('body').ready(function() {
@@ -43,36 +76,6 @@ function getStatus(player, baseUrl, action) {
             $('progress[data-player="'+ name+'"').eq(0).attr("value", data.position);
         });
     })
-}
-
-function buttonPress(element) {
-    var ele = $(element).eq(0);
-    fetch(
-        '/api/action?baseurl=' + encodeURIComponent(ele.data('base-url')) +
-        '&controlleraction=' + encodeURIComponent(ele.data('action')))
-        .then(function(resp) {
-          if (resp.ok) {
-            console.log("Volume set to: "+ele.val());
-          } else {
-            throw new Error("Could not set volume:"+resp);
-          }
-        });
-}
-
-function setVolume(element) {
-    var ele = $(element).eq(0);
-    fetch(
-        '/api/action?baseurl=' + encodeURIComponent(ele.data('base-url')) +
-        '&controlleraction=' + encodeURIComponent(ele.data('action')) +
-        '&arguments=' + encodeURIComponent(ele.val())+
-        '&arguments=0')
-        .then(function(resp) {
-          if (resp.ok) {
-            console.log("Volume set to: "+ele.val());
-          } else {
-            throw new Error("Could not set volume:"+resp);
-          }
-        });
 }
 
 function mousedown(element) {

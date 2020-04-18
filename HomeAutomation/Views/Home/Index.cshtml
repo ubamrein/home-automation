@@ -78,7 +78,7 @@
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             @foreach (var station in radio.RadioStations)
             {
-              <a class="dropdown-item" href="#" data-url="@station.URL">@station.Name</a>  
+              <a class="dropdown-item" href="#" data-url="@station.URL" data-service-action="@radio.Name" data-base-url="@player.BaseUrl" data-action='@player.Actions["PlayNew"]' onclick="radioSelected(this)">@station.Name</a>  
             }
         </div>
     </div>
@@ -91,9 +91,7 @@
         @* <button class="stop" onclick="buttonPress(this)" data-player="@player.Name" data-base-url="@player.BaseUrl" data-action='@player.Actions["Stop"]'></button> *@
         <button class="next" onclick="buttonPress(this)" data-player="@player.Name" data-base-url="@player.BaseUrl" data-action='@player.Actions["Skip"]'></button>
     </div>
-    <div>
-        <progress data-player="@player.Name" />
-    </div>
+        <progress data-player="@player.Name" ></progress>
     
 
     <div class="volume">

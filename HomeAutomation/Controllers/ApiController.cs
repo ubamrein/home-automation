@@ -5,6 +5,7 @@ using System.Linq;
 using HomeAutomation.Models;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using System;
 
 namespace HomeAutomation.Controllers
 {
@@ -19,11 +20,11 @@ namespace HomeAutomation.Controllers
         public async Task<string[]> Action(string baseurl, string controlleraction, string[] arguments) {
             Debug.WriteLine(controlleraction);
             var parsedURL = controlleraction.Split("?").First()+"?";
-            int i=0;
-            foreach(Match argument in argpattern.Matches(controlleraction)){
+            var matches = argpattern.Matches(controlleraction);
+            for(int i=0;i<Math.Min(matches.Count,arguments.Length);i++){
+                Match argument=matches[i];
                 var queryKey=argument.Groups["key"].Value;
                 parsedURL+=queryKey+"="+arguments[i]+"&";
-                i++;
             }
             parsedURL=parsedURL.Substring(1,parsedURL.Length-1);
             var resp = await client.GetAsync($"{baseurl}/{parsedURL}");

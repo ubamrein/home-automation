@@ -107,6 +107,11 @@ rect:hover:not(.outside) {
   margin: 10px auto !important;
 }
 
+progress {
+  width: 160px;
+  display: block;
+}
+
 .display {
   background-color: transparent;
   border: black solid 1 px;
@@ -119,7 +124,7 @@ rect:hover:not(.outside) {
 }
 
 .media-controls {
-  width: 120px;
+  width: 69px;
 }
 
 .media-controls>button {

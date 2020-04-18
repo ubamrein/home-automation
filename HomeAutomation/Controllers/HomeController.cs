@@ -18,7 +18,8 @@ namespace HomeAutomation.Controllers
                 BaseUrl = "http://192.168.179.42:11000",
                 Actions = new Dictionary<string, string>() {
                     {"GetServices", "/Services"},
-                    {"Play","/Play?service=::service::"},
+                    {"Play","/Play"},
+                    {"PlayNew", "/Play?service=::service::&url=::url::"},
                     {"Pause", "/Pause"},
                     {"Skip", "/Skip"},
                     {"Back", "/Back"},
