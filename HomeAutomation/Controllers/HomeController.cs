@@ -68,7 +68,10 @@ namespace HomeAutomation.Controllers
         public async Task<IActionResult> Index()
         {
             foreach(var controller in MyHome.Controllers) {
-                await controller.LoadServices();
+                try {
+                    await controller.LoadServices();
+                }
+                catch(Exception ex) {}
             }
             return View(MyHome);
         }

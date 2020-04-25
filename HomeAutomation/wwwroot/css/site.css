@@ -125,11 +125,14 @@ progress {
 
 .media-controls {
   width: 69px;
+  min-height: 20px;
 }
 
 .media-controls>button {
   background-color: transparent;
   border: none;
+  padding:0px;
+  margin:0px;
 }
 
 .back {
